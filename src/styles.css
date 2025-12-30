@@ -1,0 +1,405 @@
+﻿/* =========================================
+   1. GLOBAL RESET & BASICS
+   ========================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #020010; /* Deep Dark Blue/Black */
+  color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* =========================================
+   2. LAYOUT CONTAINER
+   ========================================= */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.section {
+  max-width: 600px; /* Mobile App Look */
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+/* =========================================
+   3. BIG COUNTDOWN (New!)
+   ========================================= */
+.big-countdown {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin: 30px 0;
+}
+
+.big-countdown div {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 15px;
+  border-radius: 12px;
+  border: 2px solid #ff005c;
+  min-width: 70px;
+  box-shadow: 0 0 15px rgba(255, 0, 92, 0.4);
+  animation: pulse 1s infinite alternate;
+}
+
+.big-countdown span {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.big-countdown small {
+  font-size: 0.8rem;
+  color: #ffd700;
+  text-transform: uppercase;
+  margin-top: 5px;
+}
+
+@keyframes pulse {
+  from { transform: scale(1); box-shadow: 0 0 10px rgba(255,0,92,0.4); }
+  to { transform: scale(1.05); box-shadow: 0 0 25px rgba(255,0,92,0.8); }
+}
+
+/* =========================================
+   4. VIDEO OVERLAY (New!)
+   ========================================= */
+.video-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-overlay video {
+  width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.skip-btn {
+  position: absolute;
+  bottom: 40px;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border: 1px solid white;
+  padding: 10px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* =========================================
+   5. STANDARD UI ELEMENTS
+   ========================================= */
+.hero-title {
+  font-size: 2.5rem;
+  margin-bottom: 5px;
+  background: linear-gradient(to right, #ff00cc, #333399);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.hero-subtitle { color: #aaa; margin-bottom: 20px; }
+
+img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.08);
+  padding: 15px;
+  border-radius: 12px;
+  margin: 10px 0;
+  border: 1px solid rgba(255,255,255,0.1);
+  transition: 0.3s;
+}
+.card:hover { transform: translateY(-5px); background: rgba(255,255,255,0.15); }
+
+.btn {
+  background: linear-gradient(45deg, #ff005c, #6a00ff);
+  color: white;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 15px;
+  box-shadow: 0 4px 15px rgba(255, 0, 92, 0.4);
+}
+
+.landing-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  width: 100%;
+  margin-top: 30px;
+}
+
+/* =========================================
+   6. EFFECTS
+   ========================================= */
+.confetti {
+  position: fixed;
+  top: -10px;
+  width: 10px;
+  height: 10px;
+  z-index: 9999;
+  animation: fall 4s linear forwards;
+  border-radius: 50%;
+}
+@keyframes fall { to { transform: translateY(110vh) rotate(720deg); } }
+
+.falling-photo {
+  position: fixed;
+  top: -100px;
+  width: 80px;
+  z-index: 9998;
+  opacity: 0.9;
+  border-radius: 8px;
+  animation: fallImage 6s linear forwards;
+}
+/* =========================================
+   9. GALLERY SPECIAL EFFECTS
+   ========================================= */
+
+/* The Fancy Golden/Rainbow Border */
+.gallery-frame {
+  position: relative;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 30px;
+  border-radius: 20px;
+  /* Create a gradient border */
+  border: 4px solid transparent;
+  background-clip: padding-box;
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.gallery-frame::before {
+  content: '';
+  position: absolute;
+  top: -4px; bottom: -4px;
+  left: -4px; right: -4px;
+  background: linear-gradient(45deg, #ff005c, #ffd700, #6a00ff, #ff005c);
+  z-index: -1;
+  border-radius: 24px;
+  animation: borderRotate 4s linear infinite;
+}
+
+@keyframes borderRotate {
+  0% { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* Floating Balloons & Ribbons */
+.floating-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Let clicks pass through */
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-item {
+  position: absolute;
+  bottom: -50px;
+  font-size: 2rem;
+  opacity: 0.7;
+  animation: floatUp linear infinite;
+}
+/* =========================================
+   10. GLOBAL ANIMATED BACKGROUND
+   ========================================= */
+.global-floating-container {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none; /* Allows you to click links behind balloons */
+  z-index: 0; /* Behind everything */
+  overflow: hidden;
+}
+
+.global-floating-item {
+  position: absolute;
+  bottom: -10vh;
+  opacity: 0.6;
+  animation: floatUpSlow linear infinite;
+}
+
+@keyframes floatUpSlow {
+  0% { transform: translateY(0) rotate(0deg); }
+  100% { transform: translateY(-120vh) rotate(360deg); }
+}
+
+/* Ensure content sits ON TOP of balloons */
+.app-content {
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================
+   11. PREMIUM GALLERY LAYOUT
+   ========================================= */
+.gallery-page {
+  padding: 20px;
+  max-width: 1000px; /* Wider for gallery */
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* The Bordered Container */
+.premium-border {
+  border: 10px solid transparent;
+  padding: 20px;
+  /* Gold and Pink Pattern Border */
+  border-image: linear-gradient(45deg, #ff005c, #ffd700, #ff005c) 1;
+  background: rgba(0,0,0,0.5); /* Dark see-through background */
+  box-shadow: 0 0 30px rgba(255, 0, 92, 0.2);
+}
+
+.premium-grid {
+  display: grid;
+  /* Auto-responsive: Fits as many photos as possible */
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+.photo-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 4px solid white; /* Polaroid style border */
+  background: white;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+  aspect-ratio: 3 / 4; /* Keeps photos nice and vertical */
+}
+
+.photo-card:hover {
+  transform: scale(1.05) rotate(2deg); /* Tults slightly on hover */
+  z-index: 10;
+  box-shadow: 0 10px 25px rgba(255, 215, 0, 0.5);
+}
+
+.photo-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+/* =========================================
+   12. JOURNEY (BEFORE/AFTER) SLIDER
+   ========================================= */
+.comparison-wrapper {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  border: 2px solid #ff005c;
+  box-shadow: 0 0 30px rgba(255, 0, 92, 0.3);
+  max-width: 500px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.comparison-container {
+  position: relative;
+  width: 100%;
+  /* Define aspect ratio here (e.g., square or portrait) */
+  aspect-ratio: 3 / 4; 
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+.comp-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures photos fill the box */
+  pointer-events: none;
+}
+
+/* The Child photo sits on top */
+.overlay-img {
+  z-index: 2;
+  border-right: 2px solid white;
+}
+
+/* The Vertical Line */
+.slider-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: white;
+  z-index: 10;
+  transform: translateX(-50%);
+  pointer-events: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* The Circle Handle */
+.slider-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  background: #ff005c;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  border: 3px solid white;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+/* The Invisible Input */
+.slider-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: ew-resize; /* Shows left-right arrow cursor */
+  z-index: 20;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+  100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+}
+@keyframes fallImage { to { transform: translateY(110vh) rotate(360deg); } }
